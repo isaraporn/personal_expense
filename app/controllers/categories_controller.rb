@@ -1,8 +1,25 @@
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.xml
+
   def index
     @categories = Category.all
+    @total = []
+
+    for x in @categories
+      @per_cat_item = Item.find_all_by_category_id(x.id)
+      @temp = 0
+      for y in @per_cat_item
+        @temp = @temp+y.expense
+      end
+      @total<<@temp
+    end
+
+    @summary = 0
+    for z in @total
+      @summary = @summary+z
+    end
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +31,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1.xml
   def show
     @category = Category.find(params[:id])
+    @itemlist = Item.find_all_by_category_id(@category)
+    @per_cat_total = 0
+    for a in @itemlist
+      @per_cat_total = @per_cat_total+a.expense
+    end
 
     respond_to do |format|
       format.html # show.html.erb

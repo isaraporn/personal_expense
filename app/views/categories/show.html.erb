@@ -1,9 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @category.name %>
-</p>
+<h2>
+  Detailed Expense of
+  <b> "<%= @category.name.upcase %>" </b>
+  Category
+
+</h2>
+
+<table>
+
+<tr>
+  <td><b>Items</b></td>
+  <th></th>
+  <td><b>Expense</b></td>
+</tr>
+
+<% for a in @itemlist %>
+  <tr>
+    <td><%= a.name %></td>
+    <th></th>
+    <td><%= a.expense %></td>
+  </tr>
+<% end %>
+
+<tr>
+  <td><b>Total</b></td>
+  <th></th>
+  <td><b><%= @per_cat_total %></b></td>
+</tr>
+
+</table>
 
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
