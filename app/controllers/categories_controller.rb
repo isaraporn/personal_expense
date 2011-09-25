@@ -4,27 +4,23 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
-    @total = []
+    @summary = 0
 
     for x in @categories
-      @per_cat_item = Item.find_all_by_category_id(x.id)
-      @temp = 0
-      for y in @per_cat_item
-        @temp = @temp+y.expense
+      total_item_in_category = Item.find_all_by_category_id(x.id)
+      temp_total = 0
+      for y in total_item_in_category
+        temp_total = temp_total+y.expense
       end
-      @total<<@temp
+      @categories[x.id-1].update_attributes(:total => temp_total)
+      @summary = @summary + temp_total
     end
-
-    @summary = 0
-    for z in @total
-      @summary = @summary+z
-    end
-
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categories }
     end
+
   end
 
   # GET /categories/1
@@ -32,9 +28,9 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @itemlist = Item.find_all_by_category_id(@category)
-    @per_cat_total = 0
+    @summary = 0
     for a in @itemlist
-      @per_cat_total = @per_cat_total+a.expense
+      @summary = @summary+a.expense
     end
 
     respond_to do |format|

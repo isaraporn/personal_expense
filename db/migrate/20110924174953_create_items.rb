@@ -5,6 +5,7 @@ class CreateItems < ActiveRecord::Migration
       t.integer :category_id
       t.float :expense
 
+
       t.timestamps
     end
   end

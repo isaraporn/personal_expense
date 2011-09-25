@@ -5,14 +5,17 @@
     <th>Name</th>
     <th></th>
     <th>Total Expense</th>
-    <th></th>
+    <th>Created</th>
+    <th>Updated</th>
   </tr>
 
 <% @categories.each do |category| %>
   <tr>
     <td><%= category.name %></td>
     <th></th>
-    <td><%= @total[category.id-1] %></td>
+    <td><%= category.total %></td>
+    <td><%= category.created_at %></td>
+    <td><%= category.updated_at %></td>
     <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
