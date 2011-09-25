@@ -4,6 +4,12 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @categories = Category.all
+    @summary = 0
+
+    for x in @items
+      @summary = @summary + x.expense
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @items }
