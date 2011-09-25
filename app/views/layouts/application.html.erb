@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>PersonalExpense</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <title>Personal Expense</title>
   <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
+  <%= stylesheet_link_tag 'blueprint/print', :media => 'print' %>
 </head>
+
 <body>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
+
 </html>
