@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # GET /items.xml
   def index
     @items = Item.all
-
+    @categories = Category.all
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @items }

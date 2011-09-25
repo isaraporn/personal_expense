@@ -1,4 +1,4 @@
-<h1>Listing items</h1>
+<h1>All Expense Items</h1>
 
 <table>
   <tr>
@@ -13,7 +13,7 @@
 <% @items.each do |item| %>
   <tr>
     <td><%= item.name %></td>
-    <td><%= item.category_id %></td>
+    <td><%= @categories[item.category_id-1].name %></td>
     <td><%= item.expense %></td>
     <td><%= item.created_at %></td>
     <td><%= item.updated_at %></td>
