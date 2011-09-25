@@ -9,10 +9,12 @@ class CategoriesController < ApplicationController
     for x in @categories
       total_item_in_category = Item.find_all_by_category_id(x.id)
       temp_total = 0
-      for y in total_item_in_category
-        temp_total = temp_total+y.expense
+      if total_item_in_category != nil
+        for y in total_item_in_category
+          temp_total = temp_total+y.expense
+        end
       end
-      @categories[x.id-1].update_attributes(:total => temp_total)
+      x.update_attributes(:total => temp_total)
       @summary = @summary + temp_total
     end
 
